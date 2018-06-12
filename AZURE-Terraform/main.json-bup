@@ -1,0 +1,30 @@
+{
+	"description": "Basic RHEL image.",
+	"variables": {
+		"client_id": "90db42b2-d68b-40eb-a0ce-1aaff2c9f8c0",
+		"client_secret": "SMFOwM0yu6Mrv58QILxRb+8vJ4W8IRsGfyYr5pEL3Cg=",
+		"subscription_id": "df28ef54-071d-4d9c-886b-045bdffda9aa",
+		"azure_location": "South India",
+		"azure_resource_group_name": "TESTGROUP"
+	},
+	"builders": [
+		{
+			"type": "azure-arm",
+			"communicator": "ssh",
+			"ssh_pty": true,
+			"managed_image_name": "rhel-{{ user `base_rhel_version` }}-rabbitmq-x86_64",
+			"managed_image_resource_group_name": "{{ user `azure_resource_group_name` }}",
+			"os_type": "Linux",
+			"vm_size": "Standard_B1",
+			"client_id": "{{ user `client_id` }}",
+			"client_secret": "{{ user `client_secret` }}",
+			"subscription_id": "{{ user `subscription_id` }}",
+			"location": "{{ user `azure_location` }}",
+			"image_publisher": "RedHat",
+			"image_offer": "RHEL",
+			"image_sku": "7.3",
+			"image_version": "latest"
+		}
+	]
+	
+}
